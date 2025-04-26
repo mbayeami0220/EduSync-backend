@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import com.example.unchkbackend.model.Role;
+
 
 // Pour l'injection de dépendances
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +54,7 @@ public class EtudiantController {
     @GetMapping
     public List<Etudiant> getAllEtudiants() {
         return etudiantService.getAllEtudiants();
+         
     }
 
     // Récupérer les informations supplémentaires d'un étudiant (par exemple, un DTO)
@@ -69,10 +72,12 @@ public class EtudiantController {
     }
 
     // Ajouter un nouvel étudiant
-   @PostMapping
-public ResponseEntity<?> createEtudiants(@RequestBody List<Etudiant> etudiants) {
-    etudiants.forEach(etudiantService::createEtudiant);
-    return ResponseEntity.ok("Étudiants ajoutés avec succès !");
+ @PostMapping
+public ResponseEntity<Etudiant> createEtudiant(@RequestBody Etudiant etudiant) {
+    etudiant.setRole(Role.ETUDIANT);
+    Etudiant savedEtudiant = etudiantService.createEtudiant(etudiant);
+    return ResponseEntity.status(201).body(savedEtudiant); // HTTP 201 + JSON
 }
+
 
 }

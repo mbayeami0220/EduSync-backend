@@ -10,6 +10,7 @@ import java.util.Date;
 
 @Service
 public class JwtService {
+    
 
     private final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256); 
 
@@ -18,7 +19,7 @@ public class JwtService {
                 .setSubject(subject)
                 .claim("role", role)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)) // 24h
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 2))
                 .signWith(key)
                 .compact();
     }
@@ -42,7 +43,7 @@ public class JwtService {
         return (username.equals(expectedUsername) && !isTokenExpired(token));
     }
 
-    private boolean isTokenExpired(String token) {
+    public boolean isTokenExpired(String token) {
         Date expiration = Jwts.parser().setSigningKey(key).build()
                 .parseClaimsJws(token)
                 .getBody()

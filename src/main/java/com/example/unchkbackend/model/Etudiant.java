@@ -4,7 +4,7 @@ import java.util.Optional;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Data
 @NoArgsConstructor
@@ -34,7 +34,7 @@ public class Etudiant {
 
     @JsonProperty("autres_formations")
     private String autresFormations;
-
+ @JsonIgnore
     private String password;
 
     @Enumerated(EnumType.STRING)

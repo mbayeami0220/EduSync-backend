@@ -21,27 +21,31 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
 
-    public AuthResponse login(AuthRequest request) {
-        String identifier = request.getIdentifier();
-        String password = request.getPassword();
+   public AuthResponse login(AuthRequest request) {
+    String identifier = request.getIdentifier();
+    String password = request.getPassword();
 
-        // Tentative de login en tant qu'Admin
-          Admin admin = adminRepository.findByUsername(identifier)
-    .orElseThrow(() -> new BadCredentialsException("Identifiants incorrects"));
-
-        if (admin != null && passwordEncoder.matches(password, admin.getPassword())) {
+    // Tentative de login en tant qu'Admin
+    var adminOpt = adminRepository.findByUsername(identifier);
+    if (adminOpt.isPresent()) {
+        Admin admin = adminOpt.get();
+        if (passwordEncoder.matches(password, admin.getPassword())) {
             String token = jwtService.generateToken(admin.getUsername(), Role.ADMIN.name());
             return new AuthResponse(token, Role.ADMIN.name());
         }
+    }
 
-        // Tentative de login en tant qu'Étudiant
-        Etudiant etudiant = etudiantRepository.findByIne(identifier)
-        .orElseThrow(() -> new BadCredentialsException("Identifiants incorrects"));
-        if (etudiant != null && passwordEncoder.matches(password, etudiant.getPassword())) {
+    // Tentative de login en tant qu'Étudiant
+    var etudiantOpt = etudiantRepository.findByIne(identifier);
+    if (etudiantOpt.isPresent()) {
+        Etudiant etudiant = etudiantOpt.get();
+        if (passwordEncoder.matches(password, etudiant.getPassword())) {
             String token = jwtService.generateToken(etudiant.getIne(), Role.ETUDIANT.name());
             return new AuthResponse(token, Role.ETUDIANT.name());
         }
-
-        throw new BadCredentialsException("Identifiants incorrects");
     }
+
+    throw new BadCredentialsException("Identifiants incorrects");
+}
+
 }

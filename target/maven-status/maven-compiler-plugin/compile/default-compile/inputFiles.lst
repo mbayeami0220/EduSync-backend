@@ -5,7 +5,9 @@ C:\Users\7MAKSACOD PC\Desktop\Unchk\backend\src\main\java\com\example\unchkbacke
 C:\Users\7MAKSACOD PC\Desktop\Unchk\backend\src\main\java\com\example\unchkbackend\repository\CourrierRepository.java
 C:\Users\7MAKSACOD PC\Desktop\Unchk\backend\src\main\java\com\example\unchkbackend\UnchkBackendApplication.java
 C:\Users\7MAKSACOD PC\Desktop\Unchk\backend\src\main\java\com\example\unchkbackend\dto\StudentDTO.java
+C:\Users\7MAKSACOD PC\Desktop\Unchk\backend\src\main\java\com\example\unchkbackend\controller\CourrierController.java
 C:\Users\7MAKSACOD PC\Desktop\Unchk\backend\src\main\java\com\example\unchkbackend\auth\AuthResponse.java
+C:\Users\7MAKSACOD PC\Desktop\Unchk\backend\src\main\java\com\example\unchkbackend\service\CourrierService.java
 C:\Users\7MAKSACOD PC\Desktop\Unchk\backend\src\main\java\com\example\unchkbackend\controller\AuthController.java
 C:\Users\7MAKSACOD PC\Desktop\Unchk\backend\src\main\java\com\example\unchkbackend\service\JwtService.java
 C:\Users\7MAKSACOD PC\Desktop\Unchk\backend\src\main\java\com\example\unchkbackend\model\Role.java

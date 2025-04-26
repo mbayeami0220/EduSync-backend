@@ -41,15 +41,6 @@ public void deleteEtudiant(String ine) {
         return etudiantRepository.save(etudiant);
     }
 
- public void assignDefaultPasswordToAllEtudiants() {
-        List<Etudiant> etudiants = etudiantRepository.findAll();
-        for (Etudiant etudiant : etudiants) {
-            if (etudiant.getPassword() == null || etudiant.getPassword().isEmpty()) {
-                etudiant.setPassword(passwordEncoder.encode("defaultPassword"));  // Mot de passe par défaut
-                etudiantRepository.save(etudiant);
-            }
-        }
-    }
     public boolean authenticate(String ine, String password) {
         Optional<Etudiant> optional = etudiantRepository.findByIne(ine);
         return optional
