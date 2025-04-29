@@ -9,6 +9,7 @@ com\example\unchkbackend\config\SecurityConfig.class
 com\example\unchkbackend\model\Courrier$CourrierBuilder.class
 com\example\unchkbackend\model\Courrier.class
 com\example\unchkbackend\dto\StudentDTO.class
+com\example\unchkbackend\model\Student.class
 com\example\unchkbackend\controller\CourrierController.class
 com\example\unchkbackend\controller\EtudiantController.class
 com\example\unchkbackend\controller\AuthController.class

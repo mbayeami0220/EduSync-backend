@@ -76,7 +76,7 @@ public class EtudiantController {
 public ResponseEntity<Etudiant> createEtudiant(@RequestBody Etudiant etudiant) {
     etudiant.setRole(Role.ETUDIANT);
     Etudiant savedEtudiant = etudiantService.createEtudiant(etudiant);
-    return ResponseEntity.status(201).body(savedEtudiant); // HTTP 201 + JSON
+    return ResponseEntity.status(201).body(savedEtudiant); 
 }
 
 

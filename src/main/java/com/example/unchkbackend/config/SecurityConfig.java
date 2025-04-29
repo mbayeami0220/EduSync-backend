@@ -45,20 +45,20 @@ public class SecurityConfig {
             }))
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                // Autorisation de l'accès à l'authentification et aux ressources publiques
-                .requestMatchers("/api/auth/login", "/api/auth/logout").permitAll() // Permet la déconnexion
-                .requestMatchers("/api/etudiants/**", "/api/courriers/**").authenticated()  /
-                .anyRequest().authenticated() // Protège toutes les autres
+        
+                .requestMatchers("/api/auth/login", "/api/auth/logout").permitAll() 
+                .requestMatchers("/api/etudiants/**", "/api/courriers/**").permitAll()  
+                .anyRequest().authenticated() 
             )
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         // Configuration pour la déconnexion
         http.logout()
-            .logoutUrl("/api/auth/logout") // URL de la déconnexion
-            .invalidateHttpSession(true)   // Invalide la session après déconnexion
-            .clearAuthentication(true)     // Efface l'authentification
-            .logoutSuccessUrl("/login")    // Redirige vers la page de login
+            .logoutUrl("/api/auth/logout") 
+            .invalidateHttpSession(true)   
+            .clearAuthentication(true)     
+            .logoutSuccessUrl("/login")    
             .permitAll();
 
         return http.build();
